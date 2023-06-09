@@ -161,10 +161,10 @@ body .start {
 body > img{
      width: 170px;
      height: 170px;
-     position: absolute;
+     position: fixed;
      left: 50%;
      top: 50%;
-     transform: translate(-50%, 42%);
+     transform: translate(-50%, -50%);
 }
 .product{
      max-height: 500px;
