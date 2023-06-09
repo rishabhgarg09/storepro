@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>fake store api</title>
+     <link rel="icon" href="img/ok.jpg">
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+
+<body>
+     <img src="img/Iphone-spinner-2.gif" alt="" class="windowloader" width="200px">
+     <main>
+          <div class="wrap-1">
+               <div class="container">
+                    <div class="row products skeletons">
+
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
+                         
+                    </div>
+               </div>
+          </div>
+          <script>
+               "use strict"
+               document.querySelector("body >img").style.display = "block"
+               document.querySelector("main").style.display = "none";
+
+               window.addEventListener('load', function () {
+                    document.querySelector("body >img").style.display = "none"
+                    document.querySelector("main").style.display = "block";
+
+               });
+               // document.querySelectorAll(".skeletons .skeleton").style.display="none";
+
+               document.querySelectorAll(".skeleton").forEach(function (i) {
+                    i.innerHTML = `
+                         <div class="product">
+                              <div class="productimage">
+                                   <img src="" alt="">
+                              </div>
+                              <div class="productsummary skp">
+                                   <div class="title"><b ></b></div>
+                                   <div> <span class="rating"><span class="starsk"></span><span class="rating_count"></span></div>
+                                   <div class="price">  </div>
+                                   <p></p>
+                              </div>
+                         </div>
+                    `
+               });
+               fetch('https://fakestoreapi.com/products').then(function (response) {
+                    return response.json();
+               }).then(function (data) {
+                    console.log(data);
+                    document.querySelectorAll(".skeleton").forEach(function (i) {
+                         document.querySelector(".row.products").classList.remove("skeletons");
+                         i.style.display = "none";
+
+                    });
+
+                    for (let i in data) {
+                         let a = document.createElement("div");
+                         a.innerHTML = ` <div class="product">
+                                   <div class="productimage">
+                                        <img src="${data[i]["image"]}" alt="" loading="lazy">
+                                   </div>
+                                   <div class="productsummary">
+                                        <div class="title"><b >${data[i]["title"]}</b></div>
+                                        <div> <span class="rating"><b>${data[i]["rating"]["rate"]}</b>&nbsp&nbsp<span class="starsk"></span><span class="rating_count">(${data[i]["rating"]["count"]})</span></div>
+                                        <div class="price">  $ <strike>${data[i]["price"] + 147}  </strike>&nbsp${data[i]["price"]} </div>
+                                        <p>Free Delivery by Our Courier Partner</p>
+                                   </div>
+                                   <div class="productdescription">
+                                        <p>
+                                        </p>
+                                   </div>
+                              </div>`;
+                         a.classList.add("col-sm-6", "col-sm-6", "col-md-4", "col-lg-4", "col-xl-3");
+                         document.querySelector(".wrap-1 .row").appendChild(a);
+                    }
+                    document.querySelectorAll(".rating b").forEach(function (j) {
+                         let kk = ((Math.round(j.textContent)));
+                         for (let i = kk; i > 0; i--) {
+                              j.nextElementSibling.innerHTML += `<img src="img/stars.jpg" alt="" >`;
+                         }
+                         for (let y = (5 - kk); y > 0; y--) {
+                              j.nextElementSibling.innerHTML += `<img src="img/smallblankstar.jpg" alt="" width="15px" >`;
+                         }
+                    })
+               })
+          </script>
+     </main>
+
+</body>
+
+</html>
