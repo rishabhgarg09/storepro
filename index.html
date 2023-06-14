@@ -15,27 +15,13 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
- 
+
 <body>
      <img src="img/Iphone-spinner-2.gif" alt="" class="windowloader" width="200px">
      <main>
           <div class="wrap-1">
                <div class="container">
                     <div class="row products skeletons">
-
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         <div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>
-                         
                     </div>
                </div>
           </div>
@@ -47,10 +33,10 @@
                window.addEventListener('load', function () {
                     document.querySelector("body >img").style.display = "none"
                     document.querySelector("main").style.display = "block";
-
                });
-               // document.querySelectorAll(".skeletons .skeleton").style.display="none";
-
+               for (let i = 1; i <= 26; i++) {
+                    document.querySelector(".skeletons").innerHTML += `<div class="skeleton  col-sm-6 col-sm-6 col-md-4 col-lg-4 col-xl-3"> </div>`
+               }
                document.querySelectorAll(".skeleton").forEach(function (i) {
                     i.innerHTML = `
                          <div class="product">
@@ -107,7 +93,6 @@
                     })
                })
           </script>
- 
      </main>
 
 </body>
